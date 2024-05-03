@@ -1,5 +1,5 @@
 This is my first attempt towards creating a blog application with django.
-Fronted theme by Free themes.
+Fronted theme by Free HTML5.
 
 Features Include
 1. Post page without pagination
