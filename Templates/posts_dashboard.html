@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<!-- Google Webfonts -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+	<!-- Animate.css -->
+
+	<!-- Icomoon Icon Fonts-->
+
+	<!-- Magnific Popup -->
+
+	<!-- Salvattore -->
+
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="{% static 'css/style.css'%}">
+	<link rel="stylesheet" href="{% static 'css/css2.css'%}">
+	<!-- Modernizr JS -->
+
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{% static 'js/respond.min.js'%}"></script>
+	<![endif]-->
+</head>
+<body>
+    <div class="container2">
+        <div class="sidebar">
+            <div class="add-post-button">
+                <i class="fas fa-plus"></i> <!-- Plus sign icon -->
+                <a href="/add_post.html">Add Posts</a>
+            </div>
+            <ul>
+                <li><i class="fas fa-pencil-alt"></i>Posts</li>
+                <li><i class="fas fa-th-large"></i>Categories</li>
+                <li><i class="fas fa-comment"></i>Comments</li>
+                <li><i class="fas fa-images"></i>Media</li>
+            </ul>
+        </div>
+          <div class="content">
+            <div class="panel-container">
+                <div class="published-title">Published Posts</div>
+                {% for  polist in polist %}
+                <div class="panel">
+                    <div class="post">
+                     <img src="{{ polist.image.url }}" alt="Free HTML5 Bootstrap temp">
+                        <p><strong>Title:</strong> {{ polist.title }}</p>
+                        <span class="separator">|</span>
+                        <p><strong>Author:</strong> {{ polist.author }}</p>
+                        <span class="separator">|</span>
+                        <p><strong>Date Published:</strong> {{ polist.publish }}</p>
+                        <span class="separator">|</span>
+                        <p><strong>Comments:</strong> 5</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
