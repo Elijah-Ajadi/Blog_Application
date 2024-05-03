@@ -25,6 +25,22 @@
   box-sizing: border-box; /* Include padding and border in the width */
 }
 
+#id_publish,
+#id_username,
+#id_email,
+#id_password1,
+#id_password2,
+#id_phone_number {
+  width: calc(100% - 52px); /* Adjusted width to account for padding and borders */
+  height: 40px; /* Set the height of all fields */
+  padding: 10px;
+  margin-bottom: 20px; /* Add space between fields */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
 /* Style the submit button */
 button[type="submit"] {
   width: 100%;

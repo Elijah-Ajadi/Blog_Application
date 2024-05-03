@@ -15,6 +15,8 @@
   font-size: 16px;
   box-sizing: border-box; /* Include padding and border in the width */
 }
+
+
 #id_name {
   width: calc(100% - 22px); /* Adjusted width to account for padding and borders */
   height: 40px; /* Set the height of all fields */
@@ -25,6 +27,7 @@
   font-size: 16px;
   box-sizing: border-box; /* Include padding and border in the width */
 }
+
 
 /* Style the submit button */
 button[type="submit"] {

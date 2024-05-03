@@ -1,14 +1,56 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment
 from django.http import JsonResponse
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, SignUpForm
 from django.urls import reverse
-
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from .models import Profile
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
     Blogg = Post.objects.exclude(status='draft')
     return render(request, 'index.html', {'Blogg': Blogg})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password1']
+
+            # Create user
+            user = User.objects.create_user(username=username, email=email, password=password)
+            user.save()
+
+            # Create profile
+            profile = Profile.objects.create(user=user,email=email,)
+            profile.save()
+
+            return redirect('login')
+    else:
+        form = SignUpForm()
+    return render(request, 'signup.html', {'form': form})
+
+
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            auth_login(request, user)
+            return redirect('index')  # Redirect to home page after login
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect('login')
 
 
 def about(request):
@@ -50,14 +92,15 @@ def posts_dashboard(request):
     return render(request, 'posts_dashboard.html', {'polist': polist})
 
 
-def post_list(request):
-    polist = Post.objects.exclude(status='draft')
-    return render(request, 'post_list.html', {'polist': polist})
+# def post_list(request):
+#     polist = Post.objects.exclude(status='draft')
+#     return render(request, 'post_list.html', {'polist': polist})
 
 
 def comments_list(request):
     comments = Comment.objects.all()
     return render(request, 'comments.html', {'comments': comments})
+
 
 def post_create(request):
     if request.method == 'POST':
