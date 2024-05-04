@@ -9,3 +9,9 @@ Features Include
 
 Building this application has been a good ride.
 More fixes and features will be added. 
+
+Change Log
+May 4 2024
+Added sign up and login functionality to the blog project.
+Users can now create an account as well as login to their created account.
+UI does not look great yet tho.
