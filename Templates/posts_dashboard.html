@@ -70,6 +70,9 @@
                         <p><strong>Date Published:</strong> {{ polist.publish }}</p>
                         <span class="separator">|</span>
                         <p><strong>Comments:</strong> 5</p>
+                        <span class="separator">|</span><a href=" {% url 'post_update' polist.slug %}">Update Post</a>
+
+
                     </div>
                 </div>
                 {% endfor %}

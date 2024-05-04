@@ -1,5 +1,6 @@
 from django.urls import path
 from personal import views
+from.views import PostUpdateView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -15,4 +16,5 @@ urlpatterns = [
     path('signup.html', views.signup, name='signup'),
     path('login.html', views.login, name='login'),
     path('logout.html', views.logout, name='logout'),
+    path('post/<slug:slug>/update/', PostUpdateView.as_view(), name='post_update'),
 ]

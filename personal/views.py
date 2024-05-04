@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment
 from django.http import JsonResponse
+from django.views.generic import UpdateView
 from .forms import PostForm, CommentForm, SignUpForm
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from .models import Profile
@@ -114,3 +115,9 @@ def post_create(request):
     else:
         form = PostForm()
     return render(request, 'add_post.html', {'form': form})
+
+class PostUpdateView(UpdateView):
+    model = Post
+    template_name = 'update_post.html'
+    fields = ['title',  'description', 'content', 'category', 'image', 'img_desc', 'tags']
+    success_url = reverse_lazy('posts_dashboard')
