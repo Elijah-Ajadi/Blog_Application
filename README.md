@@ -15,3 +15,8 @@ May 4 2024
 Added sign up and login functionality to the blog project.
 Users can now create an account as well as login to their created account.
 UI does not look great yet tho.
+later Update:
+Sign up and Login UI looking good and working well.
+
+May 5 2024
+Published posts are now editable.
