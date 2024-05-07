@@ -17,4 +17,5 @@ urlpatterns = [
     path('login.html', views.login, name='login'),
     path('logout.html', views.logout, name='logout'),
     path('post/<slug:slug>/update/', PostUpdateView.as_view(), name='post_update'),
+    path('update_profile.html', views.update_profile, name='update_profile'),
 ]

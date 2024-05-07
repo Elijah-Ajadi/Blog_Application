@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django import forms
 from django.db import models
-from .models import Post, Comment
+from .models import Post, Comment, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -43,3 +43,9 @@ class CommentForm(forms.ModelForm):
             "name": forms.TextInput(attrs=({"placeholder": "Enter your name..."})),
             "comment": forms.Textarea(attrs=({"placeholder": "Enter your comment..."}))
         }
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['bio', 'email', 'phone_number', 'username']

@@ -65,8 +65,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    # def get_absolute_url(self):
-    #     return reverse('post_single', kwargs={'slug': self.slug})
 
 
 class Comment(models.Model):
@@ -78,8 +76,10 @@ class Comment(models.Model):
     def __str__(self):
         return '%s - %s' % (self.post.title, self.name)
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, unique=True, null=True)
     email = models.EmailField(max_length=254)
+    bio = models.CharField(null=True, max_length=500)
     phone_number = models.CharField(max_length=15)

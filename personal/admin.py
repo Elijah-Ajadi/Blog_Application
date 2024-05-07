@@ -25,7 +25,10 @@ class Comments(admin.ModelAdmin):
 
 # class ckEditor(admin.ModelAdmin):title
 
+class Profile(admin.ModelAdmin):
+    list_display = ('bio', 'email', 'phone_number', 'username')
 
+admin.site.register(models.Profile, Profile)
 admin.site.register(models.Tags, TagAdmin)
 admin.site.register(models.Post, AuthorAdmin)
 admin.site.register(models.Category, CatAuth)

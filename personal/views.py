@@ -2,12 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment
 from django.http import JsonResponse
 from django.views.generic import UpdateView
-from .forms import PostForm, CommentForm, SignUpForm
+from .forms import PostForm, CommentForm, SignUpForm, ProfileForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from .models import Profile
 from django.contrib.auth.models import User
+
 
 # Create your views here.
 def index(request):
@@ -21,7 +22,7 @@ def signup(request):
         if form.is_valid():
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
-            password = form.cleaned_data['password1']
+            password = form.cleaned_data['password']
 
             # Create user
             user = User.objects.create_user(username=username, email=email, password=password)
@@ -116,8 +117,22 @@ def post_create(request):
         form = PostForm()
     return render(request, 'add_post.html', {'form': form})
 
+
 class PostUpdateView(UpdateView):
     model = Post
     template_name = 'update_post.html'
     fields = ['title',  'description', 'content', 'category', 'image', 'img_desc', 'tags']
     success_url = reverse_lazy('posts_dashboard')
+
+
+def update_profile(request):
+    profile = request.user.profile
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('posts_dashboard'))  # Redirect to a success page
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    return render(request, 'update_profile.html', {'form': form})
+
