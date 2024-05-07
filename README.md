@@ -20,3 +20,6 @@ Sign up and Login UI looking good and working well.
 
 May 5 2024
 Published posts are now editable.
+
+May 7 2024
+Users can now edit their profiles.
