@@ -1,7 +1,7 @@
 from django.utils import timezone
 from django import forms
 from django.db import models
-from .models import Post, Comment, Profile
+from .models import Post, Comment, Profile, Category
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -31,8 +31,13 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'slug', 'description',
-                  'author', 'image', 'img_desc', 'content', 'category', 'slug',
-                  'publish', 'status']
+                  'author', 'image', 'img_desc', 'content', 'category', 'slug', 'status']
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['title', 'desc', 'cat_image']
 
 
 class CommentForm(forms.ModelForm):
@@ -48,4 +53,4 @@ class CommentForm(forms.ModelForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['bio', 'email', 'phone_number', 'username']
+        fields = ['email', 'phone_number', 'username']

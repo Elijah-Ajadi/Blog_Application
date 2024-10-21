@@ -1,13 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Post, Comment
+from .models import Post, Comment, Category
 from django.http import JsonResponse
 from django.views.generic import UpdateView
-from .forms import PostForm, CommentForm, SignUpForm, ProfileForm
+from .forms import PostForm, CommentForm, SignUpForm, ProfileForm, CategoryForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout
 from .models import Profile
 from django.contrib.auth.models import User
+from django.db.models import Count
 
 
 # Create your views here.
@@ -94,9 +95,14 @@ def posts_dashboard(request):
     return render(request, 'posts_dashboard.html', {'polist': polist})
 
 
-# def post_list(request):
-#     polist = Post.objects.exclude(status='draft')
-#     return render(request, 'post_list.html', {'polist': polist})
+def add_category(request):
+    return render(request, 'new_category.html',)
+
+def categories_dashboard(request):
+    catlist = Category.objects.annotate(post_count=Count('post'))
+    return render(request, 'category.html', {'catlist': catlist})
+
+
 
 
 def comments_list(request):
@@ -117,6 +123,17 @@ def post_create(request):
         form = PostForm()
     return render(request, 'add_post.html', {'form': form})
 
+def category_create(request):
+    if request.method == 'POST':
+        form = CategoryForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('categories_dashboard'))
+        else:
+            print('Form is not valid. Errors:', form.errors)
+    else:
+        form =CategoryForm()
+    return render(request, 'add_category.html', {'form': form})
 
 class PostUpdateView(UpdateView):
     model = Post

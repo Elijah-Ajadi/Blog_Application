@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Admin Panel | Categories </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <meta property="og:title" content=""/>
@@ -47,11 +47,11 @@
         <div class="sidebar">
             <div class="add-post-button">
                 <i class="fas fa-plus"></i> <!-- Plus sign icon -->
-                <a href="/add_post.html">Add Posts</a>
+                <a href="/add_category.html">Add Category</a>
             </div>
             <ul>
                 <li><i class="fas fa-pencil-alt"></i>Posts</li>
-                <li><i class="fas fa-th-large"></i><a href="category.html">Categories</a></li>
+                <li><i class="fas fa-th-large"></i><a href="/category.html">Categories</a></li>
                 <li><i class="fas fa-comment"></i>Comments</li>
                 <li><i class="fas fa-images"></i>Media</li>
             </ul>
@@ -59,19 +59,13 @@
           <div class="content">
             <div class="panel-container">
                 <div class="published-title">Posts</div>
-                {% for  polist in polist %}
+                {% for  catlist in catlist %}
                 <div class="panel">
                     <div class="post">
-                     <img src="{{ polist.image.url }}" alt="Free HTML5 Bootstrap temp">
-                        <p><strong>Title:</strong> {{ polist.title }}</p>
-                        <span class="separator">|</span>
-                        <p><strong>Author:</strong> {{ polist.author }}</p>
-                        <span class="separator">|</span>
-                        <p><strong>Date Published:</strong> {{ polist.publish }}</p>
-                        <span class="separator">|</span>
-                        <p><strong>Comments:</strong> 5</p>
-                        <span class="separator">|</span><a href=" {% url 'post_update' polist.slug %}">Update Post</a>
-
+                     <img src="{{ catlist.cat_image.url}}" alt="Free HTML5 Bootstrap temp">
+                        <p><strong>Title:</strong> {{ catlist.title }}</p>
+                        <p><strong>Description:</strong> {{ catlist.desc }}</p>
+                        <p><strong>Posts:</strong>{{ catlist.post_count }}</p>
 
                     </div>
                 </div>

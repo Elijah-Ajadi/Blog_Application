@@ -11,6 +11,7 @@ urlpatterns = [
     path('<slug:post>/', views.post_single, name='post_single'),
     # path('post_list.html', views.post_list, name='post_list'),
     path('add_post.html', views.post_create, name='post_create'),
+    path('add_category.html', views.category_create, name='category_create'),
     path('posts_dashboard.html', views.posts_dashboard, name='posts_dashboard'),
     path('comments.html', views.comments_list, name='comments_list'),
     path('signup.html', views.signup, name='signup'),
@@ -18,4 +19,5 @@ urlpatterns = [
     path('logout.html', views.logout, name='logout'),
     path('post/<slug:slug>/update/', PostUpdateView.as_view(), name='post_update'),
     path('update_profile.html', views.update_profile, name='update_profile'),
+    path('category.html', views.categories_dashboard, name='categories_dashboard'),
 ]

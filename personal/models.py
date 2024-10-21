@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+# import uuid
 from django.urls import reverse
 
 from django.core.exceptions import ValidationError
@@ -15,6 +16,8 @@ class Category(models.Model):
     # updated_at = models.DateTimeField(auto_now=True, verbose_name="Updated_at")
     title = models.CharField(max_length=255)
     desc = models.CharField(max_length=500)
+    cat_image = models.ImageField(upload_to='pics/', null=True,)
+
 
     #
     class Meta:
@@ -56,8 +59,6 @@ class Post(models.Model):
     content = RichTextField()
     tags = models.ForeignKey(Tags, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=10, choices=options, default='draft')
-
-    # newmanager = NewManager()
 
     class Meta:
         ordering = ('-publish',)
