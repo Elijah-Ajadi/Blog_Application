@@ -20,4 +20,5 @@ urlpatterns = [
     path('post/<slug:slug>/update/', PostUpdateView.as_view(), name='post_update'),
     path('update_profile.html', views.update_profile, name='update_profile'),
     path('category.html', views.categories_dashboard, name='categories_dashboard'),
+    path('media.html', views.media_page, name='media_page'),
 ]

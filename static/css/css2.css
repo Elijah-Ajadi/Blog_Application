@@ -79,7 +79,7 @@ body {
 }
 .content {
     flex: 1;
-    padding: 20px;
+    padding: 0px;
 }
 .panel-container {
     display: flex;

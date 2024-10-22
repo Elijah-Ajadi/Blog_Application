@@ -16,6 +16,10 @@ def index(request):
     Blogg = Post.objects.exclude(status='draft')
     return render(request, 'index.html', {'Blogg': Blogg})
 
+def media_page(request):
+    media = Post.objects.all()
+    return render(request, 'media.html', {'media': media})
+
 
 def signup(request):
     if request.method == 'POST':
@@ -92,7 +96,8 @@ def dashboard(request):
 
 def posts_dashboard(request):
     polist = Post.objects.exclude(status='draft')
-    return render(request, 'posts_dashboard.html', {'polist': polist})
+    olist = Post.objects.annotate(comment_count=Count('comments'))
+    return render(request, 'posts_dashboard.html', {'polist': polist, 'olist': olist})
 
 
 def add_category(request):

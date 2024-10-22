@@ -50,10 +50,10 @@
                 <a href="/add_post.html">Add Posts</a>
             </div>
             <ul>
-                <li><i class="fas fa-pencil-alt"></i>Posts</li>
+                <li><i class="fas fa-pencil-alt"></i><a href="posts_dashboard.html">Posts</a></li>
                 <li><i class="fas fa-th-large"></i><a href="category.html">Categories</a></li>
-                <li><i class="fas fa-comment"></i>Comments</li>
-                <li><i class="fas fa-images"></i>Media</li>
+                <li><i class="fas fa-comment"></i><a href="comments.html">Comments</a></li>
+                <li><i class="fas fa-images"></i><a href="media.html">Media</a></li>
             </ul>
         </div>
           <div class="content">
@@ -69,7 +69,9 @@
                         <span class="separator">|</span>
                         <p><strong>Date Published:</strong> {{ polist.publish }}</p>
                         <span class="separator">|</span>
-                        <p><strong>Comments:</strong> 5</p>
+                        {% for olist in olist %}
+                        <p><strong>Comments:</strong> {{ olist.comment_count }}</p>
+                        {% endfor %}
                         <span class="separator">|</span><a href=" {% url 'post_update' polist.slug %}">Update Post</a>
 
 
